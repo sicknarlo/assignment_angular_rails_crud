@@ -1,4 +1,8 @@
-<div ng-if="!loggedIn">
+{{ username }}
+{{ password }}
+{{ credentials }}
+
+<div ng-if="!loggedIn.status">
   <h6> Sign in to Add or Edit Pins </h6>
   <label>
     Username:
@@ -8,9 +12,10 @@
     Password:
     <input type="password" ng-model="password">
   </label>
-  <button ng-click="signIn()">Sign In</button>
+  <button ng-click="login()">Sign In</button>
 </div>
 
-<div ng-if="loggedIn">
-  <h5> Logged in as {{ currentUser.username }}</h5>
+
+<div ng-if="loggedIn.status">
+  <h5> Logged in as {{ currentUser.user.username }}</h5>
 </div>

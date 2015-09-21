@@ -55,16 +55,4 @@ var app = angular.module('app', ['ui.router', 'restangular', 'Devise'])
           }]
         }
       })
-
-
-
-
-
-
-
-      .state('sign-in', {
-        url: '/signin',
-        templateUrl: "templates/auth/signin.html",
-        controller: "AuthCtrl"
-      })
   }])

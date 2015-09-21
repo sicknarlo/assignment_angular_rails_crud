@@ -57,18 +57,32 @@ describe PinsController do
 
   describe 'PUT /pins/id/edit' do
 
-    it 'should edit the pin properly' do
-      new_pin = pin
+    it 'should not edit the pin properly if not logged in' do
+      old_text = pin.item_name
+      new_pin = FactoryGirl.build(:pin)
       new_pin.item_name = "Abc123"
+      new_pin.buy_sell = false
+      new_pin.description = "ablsdlkj"
+      new_pin.user_id = pin.user_id
+      new_pin.id = pin.id
+
       put :update, format: :json, id: pin.id, pin: new_pin.attributes
-      expect(pin.item_name).to eq("Abc123")
+      pin.reload
+      expect(pin.item_name).to eq(old_text)
     end
 
-    it 'should not edit the pin improperly' do
-      new_pin = pin
-      new_pin.item_name = "Abc1234"
+    it 'should edit the pin properly if logged in' do
+      sign_in(user)
+      new_pin = FactoryGirl.build(:pin)
+      new_pin.item_name = "Abc123"
+      new_pin.buy_sell = false
+      new_pin.description = "ablsdlkj"
+      new_pin.user_id = pin.user_id
+      new_pin.id = pin.id
+
       put :update, format: :json, id: pin.id, pin: new_pin.attributes
-      expect(pin.item_name).to_not eq("Abc123")
+      pin.reload
+      expect(pin.item_name).to eq("Abc123")
     end
   end
 

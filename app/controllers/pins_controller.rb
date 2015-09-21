@@ -29,7 +29,6 @@ class PinsController < ApplicationController
 
   def update
     @pin = Pin.find(params[:id])
-
     respond_to do |format|
       if @pin.update(whitelist_pin_params)
         format.json {render json: @pin.to_json( include: :user) }
@@ -54,7 +53,7 @@ class PinsController < ApplicationController
   end
 
   def require_owner
-    unless current_user.id == params[:id]
+    unless current_user.id == params[:id].to_i
       respond_to do |format|
         format.json { render json: {message: "Error", status: 400}}
       end

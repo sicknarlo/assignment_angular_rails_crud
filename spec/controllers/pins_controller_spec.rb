@@ -40,7 +40,13 @@ describe PinsController do
   describe 'POST /pins/' do
     # let(:new_pin) { FactoryGirl.create(:pin) }
 
-    it 'should increment the count of pins by 1' do
+    it 'should not increment the count of pins if not logged in' do
+      expect{
+        post :create, format: :json, pin: pin.attributes
+      }.to change(Pin, :count).by(0)
+    end
+
+    it 'should increment the count of pins by 1 if logged in' do
       expect{
         post :create, format: :json, pin: pin.attributes
       }.to change(Pin, :count).by(1)

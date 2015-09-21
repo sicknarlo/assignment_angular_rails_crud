@@ -5,3 +5,8 @@
 // If the user is not logged in leave them there
 
 // If the user IS logged in, route them to the pins index
+
+// 'key crud actions' are defined as:
+// creating pins
+// editing pins
+// updating pins

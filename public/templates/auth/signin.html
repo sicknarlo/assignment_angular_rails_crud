@@ -1,10 +1,16 @@
-<h6> Sign in to Add or Edit Pins </h6>
-<label>
-  Username:
-  <input type="text">
-</label>
-<label>
-  Password:
-  <input type="password">
-</label>
-<button>Sign In</button>
+<div ng-if="!loggedIn">
+  <h6> Sign in to Add or Edit Pins </h6>
+  <label>
+    Username:
+    <input type="text" ng-model="username">
+  </label>
+  <label>
+    Password:
+    <input type="password" ng-model="password">
+  </label>
+  <button ng-click="signIn()">Sign In</button>
+</div>
+
+<div ng-if="loggedIn">
+  <h5> Logged in as {{ currentUser.username }}</h5>
+</div>

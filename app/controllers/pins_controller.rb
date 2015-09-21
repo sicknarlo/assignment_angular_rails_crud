@@ -1,4 +1,5 @@
 class PinsController < ApplicationController
+  before_action :require_user, only: [:create, :destroy, :update]
 
   def index
     @pins = Pin.all
@@ -49,5 +50,13 @@ class PinsController < ApplicationController
 
   def whitelist_pin_params
     params.require(:pin).permit(:item_name, :buy_sell, :description, :user_id)
+  end
+
+  def require_user
+    unless current_user
+      respond_to do |format|
+        # ???
+      end
+    end
   end
 end

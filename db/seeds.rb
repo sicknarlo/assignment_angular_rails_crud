@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 srand(12345)
 5.times do |i|
-  new_user = User.create(username: Faker::Name.name)
+  new_user = User.create!(username: Faker::Name.name, password: "abcd1234", password_confirmation: "abcd1234")
   (rand(5) + 1).times do |i|
     new_user.pins.create(item_name: Faker::Commerce.product_name,
                          buy_sell: rand(2) > 0 ? true : false,

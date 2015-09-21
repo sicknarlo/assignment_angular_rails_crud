@@ -9,4 +9,7 @@ class User < ActiveRecord::Base
    false
   end
 
+  def email_changed?
+   false
+  end
 end

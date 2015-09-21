@@ -20,6 +20,7 @@ class PinsController < ApplicationController
 
   def create
     @pin = Pin.new(whitelist_pin_params)
+      binding.pry
     if @pin.save
       respond_to do |format|
         format.json { render json: @pin.to_json( include: :user )}

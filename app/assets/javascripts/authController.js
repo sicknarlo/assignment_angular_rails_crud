@@ -5,8 +5,8 @@ app.controller("AuthCtrl", ["$scope", "UserService", function($scope, UserServic
   $scope.currentUser = UserService.currentUser;
 
   $scope.credentials = {
-    username: $scope.username,
-    password: $scope.password,
+    username: "",
+    password: "",
   };
 
   $scope.login = function(){

@@ -1,31 +1,33 @@
-<h2> New Pin </h2>
-<form name="newPin">
-  <label>
-    Title:
-    <input type="text" ng-model="newPin.title">
-  </label>
-  <br>
-  <label>
-    Buy/Sell:
-    <div ng-init="newPin.action = true">
-      <input type="radio" name="BuySell" value="true" ng-value="true" ng-model="newPin.action">Buy
-      <input type="radio" name="BuySell" value="false" ng-model="newPin.action">Sell
-    </div>
-  </label>
-  <br>
-  <label>
-    Description:
-    <textarea ng-model="newPin.desc"></textarea>
-  </label>
-  <br>
-  <button ng-click="addPin()">Add Pin</button>
-  <br>
-  {{ newPin.title }}<br>
-  {{ newPin.action }}<br>
-  {{ newPin.desc }}<br
-  <br>
+<div ng-if="loggedIn.status">
+  <h2> New Pin </h2>
+  <form name="newPin">
+    <label>
+      Title:
+      <input type="text" ng-model="newPin.title">
+    </label>
+    <br>
+    <label>
+      Buy/Sell:
+      <div ng-init="newPin.action = true">
+        <input type="radio" name="BuySell" value="true" ng-value="true" ng-model="newPin.action">Buy
+        <input type="radio" name="BuySell" value="false" ng-model="newPin.action">Sell
+      </div>
+    </label>
+    <br>
+    <label>
+      Description:
+      <textarea ng-model="newPin.desc"></textarea>
+    </label>
+    <br>
+    <button ng-click="addPin()">Add Pin</button>
+    <br>
+    {{ newPin.title }}<br>
+    {{ newPin.action }}<br>
+    {{ newPin.desc }}<br
+    <br>
 
-</form>
+  </form>
+</div>
 
 <hr>
 

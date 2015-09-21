@@ -37,4 +37,14 @@ describe PinsController do
 
   end
 
+  describe 'POST /pins/' do
+    # let(:new_pin) { FactoryGirl.create(:pin) }
+
+    it 'should increment the count of pins by 1' do
+      expect{
+        post :index, format: :json, pin: attributes_for(pin)
+      }.to change(Pin, :count).by(1)
+    end
+
+  end
 end

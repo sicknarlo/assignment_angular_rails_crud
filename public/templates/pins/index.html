@@ -1,0 +1,32 @@
+<h2> New Pin </h2>
+<form name="newPin">
+  <label>
+    Title:
+    <input type="text" ng-model="newPin.title">
+  </label>
+  <br>
+  <label>
+    Buy/Sell:
+    <input type="radio" name="Buy" value="true" ng-model="newPin.action" checked>Buy
+    <input type="radio" name="Sell" value="false" ng-model="newPin.action">Sell
+  </label>
+  <br>
+  <label>
+    Description:
+    <textarea ng-model="newPin.desc"></textarea>
+  </label>
+  <br>
+
+</form>
+
+<hr>
+
+<h2> All Pins </h2>
+
+<div ng-repeat="pin in pins | orderBy: '-created_at'">
+  <a ui-sref="pins.show({id: pin.id})">{{ pin.item_name }}</a><br>
+  {{ pin.buy_sell ? "Want to Buy":"For Sale"}}<br>
+  {{ pin.description }}<br>
+  <h6> Posted: {{ pin.created_at | date }} by {{ pin.user.username }} </h6>
+  <hr>
+</div>

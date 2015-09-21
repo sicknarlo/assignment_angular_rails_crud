@@ -47,4 +47,28 @@ describe PinsController do
     end
 
   end
+
+  describe 'PUT /pins/id/edit' do
+
+    it 'should edit the pin properly' do
+      new_pin = pin
+      new_pin.item_name = "Abc123"
+      put :update, format: :json, id: pin.id, pin: new_pin.attributes
+      expect(pin.item_name).to eq("Abc123")
+    end
+
+    it 'should not edit the pin improperly' do
+      new_pin = pin
+      new_pin.item_name = "Abc1234"
+      put :update, format: :json, id: pin.id, pin: new_pin.attributes
+      expect(pin.item_name).to_not eq("Abc123")
+    end
+  end
+
+  describe 'Delete /pins/id' do
+
+    it 'should delete pins properly' do
+      expect{ delete :destroy, format: :json, id: pin.id }.to change(Pin, :count).by(-1)
+    end
+  end
 end

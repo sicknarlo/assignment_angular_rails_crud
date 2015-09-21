@@ -1,6 +1,7 @@
 <a ui-sref="pins.index">Back to All Pins</a>
 <hr>
 <div>
+  <a ui-sref="pins.edit({id: pin.id})">Edit Pin </a><br>
   {{ pin.item_name }}<br>
   {{ pin.buy_sell ? "Want to Buy":"For Sale"}}<br>
   {{ pin.description }}<br>

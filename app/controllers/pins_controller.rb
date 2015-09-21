@@ -25,6 +25,26 @@ class PinsController < ApplicationController
     end
   end
 
+  def update
+    @pin = Pin.find(params[:id])
+
+    respond_to do |format|
+      if @pin.update(whitelist_pin_params)
+        format.json {render json: @pin.to_json( include: :user) }
+      end
+    end
+  end
+
+  def destroy
+    @pin = Pin.find(params[:id])
+
+    respond_to do |format|
+      if @pin.destroy
+        format.json {render json: @pin.to_json }
+      end
+    end
+  end
+
   private
 
   def whitelist_pin_params

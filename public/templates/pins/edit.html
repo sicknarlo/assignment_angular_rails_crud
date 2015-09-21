@@ -1,9 +1,29 @@
 <a ui-sref="pins.index">Back to All Pins</a>
 <hr>
 <div>
-  {{ pin.item_name }}<br>
-  {{ pin.buy_sell ? "Want to Buy":"For Sale"}}<br>
-  {{ pin.description }}<br>
-  <h6> Posted: {{ pin.created_at | date }} by {{ pin.user.username }} </h6>
+<form>
+  <label>
+    Title:
+    <input type="text" ng-value="editPin.title" ng-model="editPin.item_name">
+  </label>
+  <br>
+  <label>
+    Buy/Sell:
+    <div ng-init="editPin.action = editPin.action">
+      <input type="radio" name="BuySell" value="true" ng-value="editPin.action" ng-model="editPin.action">Buy
+      <input type="radio" name="BuySell" value="false" ng-value="!editPin.action" ng-model="editPin.action">Sell
+    </div>
+  </label>
+  <br>
+  <label>
+    Description:
+    <textarea ng-model="editPin.description"></textarea>
+  </label>
+  <br>
+  <button ng-click="updatePin()">Add Pin</button>
+  <br>
   <hr>
+
+</form>
+{{ editPin }}
 </div>

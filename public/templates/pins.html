@@ -1,5 +1,37 @@
-<h1> Your Pins </h1>
+<h1> The Pinboard </h1>
+<h3> Signed in as Foo Bar <a href="#">logout</a> </h3>
+
+<hr>
+
+<h2> New Pin </h2>
+<form>
+  <label>
+    Title:
+    <input type="text">
+  </label>
+  <br>
+  <label>
+    Buy/Sell:
+    <select>
+    </select>
+  </label>
+  <br>
+  <label>
+    Description:
+    <textarea></textarea>
+  </label>
+  <br>
+
+</form>
+
+<hr>
+
+<h2> All Pins </h2>
 
 <div ng-repeat="pin in pins">
-  {{ pin }}
+  {{ pin.item_name }}<br>
+  {{ pin.buy_sell ? "Want to Buy":"For Sale"}}<br>
+  {{ pin.description }}<br>
+  <h6> Posted: {{ pin.created_at | date }} by {{ pin.user.username }} </h6>
+  <hr>
 </div>

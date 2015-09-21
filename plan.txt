@@ -1,0 +1,7 @@
+// Otherwise routes us to the sign in page
+
+// We need a sign-in state
+
+// If the user is not logged in leave them there
+
+// If the user IS logged in, route them to the pins index

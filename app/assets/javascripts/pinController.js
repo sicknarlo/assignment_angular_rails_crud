@@ -4,7 +4,7 @@ app.controller("PinCtrl", ["$scope", "pins", "Restangular", "$location", functio
 
   $scope.addPin = function(){
     Restangular.all('pins').post({ pin : {item_name: $scope.newPin.title,
-                                          buy_sell: $scope.newPin.action == "true" ? true : false,
+                                          buy_sell: $scope.newPin.action,
                                           description: $scope.newPin.desc,
                                           user_id: 1,
                                           }
@@ -41,17 +41,18 @@ app.controller("PinShowCtrl", ["$scope", "pin", "Restangular", "$location", func
 
 }])
 
-app.controller("PinEditCtrl", ["$scope", "pin", "Restangular", function($scope, pin, Restangular){
+app.controller("PinEditCtrl", ["$scope", "pin", "Restangular", "$location", function($scope, pin, Restangular, $location){
   console.log(pin);
   $scope.editPin = pin;
   $scope.updatePin = function(){
   Restangular.one('pins', pin.id).get().then(function(currentPin){
                                   $scope.pin = currentPin;
                                   $scope.pin.item_name = $scope.editPin.item_name
-                                  $scope.pin.buy_sell = $scope.editPin.buy_sell == "true" ? true : false
+                                  $scope.pin.buy_sell = $scope.editPin.buy_sell
                                   $scope.pin.description = $scope.editPin.description
 
                                   $scope.pin.put();
+                                  $location.path('/pins/index');
                                 });
  }
 }])

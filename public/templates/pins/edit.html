@@ -9,9 +9,9 @@
   <br>
   <label>
     Buy/Sell:
-    <div ng-init="editPin.action = editPin.action">
-      <input type="radio" name="BuySell" value="true" ng-value="editPin.action" ng-model="editPin.action">Buy
-      <input type="radio" name="BuySell" value="false" ng-value="!editPin.action" ng-model="editPin.action">Sell
+    <div>
+      <input type="radio" name="BuySell" value="true" ng-value="true" ng-model="editPin.buy_sell">Buy
+      <input type="radio" name="BuySell" value="false" ng-value="false" ng-model="editPin.buy_sell">Sell
     </div>
   </label>
   <br>
@@ -20,7 +20,7 @@
     <textarea ng-model="editPin.description"></textarea>
   </label>
   <br>
-  <button ng-click="updatePin()">Add Pin</button>
+  <button ng-click="updatePin()">Update Pin</button>
   <br>
   <hr>
 

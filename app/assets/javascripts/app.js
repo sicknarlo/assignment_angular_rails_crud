@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router', 'restangular'])
+var app = angular.module('app', ['ui.router', 'restangular', 'devise'])
 
 .config(["RestangularProvider", function(RestangularProvider){
   RestangularProvider.setBaseUrl("/api/v1")
@@ -21,7 +21,7 @@ var app = angular.module('app', ['ui.router', 'restangular'])
         controller: "PinCtrl",
         resolve: {
           pins: ['Restangular', function(Restangular){
-            return Restangular.all("pins").getList().$object
+            return Restangular.all("pins").getList()
           }]
         }
       })
@@ -48,5 +48,17 @@ var app = angular.module('app', ['ui.router', 'restangular'])
             return Restangular.one('pins', $stateParams.id).get();
           }]
         }
+      })
+
+
+
+
+
+
+
+      .state('sign-in', {
+        url: '/signin',
+        templateUrl: "templates/auth/signin.html",
+        controller: "AuthCtrl"
       })
   }])

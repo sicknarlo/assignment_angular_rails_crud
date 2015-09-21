@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require devise
 //= require angular
+//= require devise
 //= require ui-router
 //= require lodash
 //= require restangular

@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router', 'restangular', 'devise'])
+var app = angular.module('app', ['ui.router', 'restangular', 'Devise'])
 
 .config(["RestangularProvider", function(RestangularProvider){
   RestangularProvider.setBaseUrl("/api/v1")
@@ -13,7 +13,13 @@ var app = angular.module('app', ['ui.router', 'restangular', 'devise'])
     $stateProvider
       .state('pins', {
         url: "/pins",
-        templateUrl: 'templates/pins/layout.html'
+        views: {
+          "pins": {
+            templateUrl: 'templates/pins/layout.html'},
+          "auth": {
+            templateUrl: 'templates/auth/signin.html',
+            controller: 'AuthCtrl'}
+        }
       })
       .state('pins.index', {
         url: "/index",

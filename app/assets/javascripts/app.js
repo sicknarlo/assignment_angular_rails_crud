@@ -26,6 +26,18 @@ var app = angular.module('app', ['ui.router', 'restangular'])
         }
       })
 
+      .state('pins.edit', {
+        url: "/edit/:id",
+        templateUrl: "templates/pins/edit.html",
+        controller: "PinEditCtrl",
+        resolve: {
+          pin: ['Restangular', '$stateParams',
+          function(Restangular, $stateParams){
+            return Restangular.one('pins', $stateParams.id).get();
+          }]
+        }
+      })
+
       .state('pins.show', {
         url: '/:id',
         templateUrl: "templates/pins/show.html",

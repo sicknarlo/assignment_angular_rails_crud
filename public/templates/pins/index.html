@@ -7,14 +7,22 @@
   <br>
   <label>
     Buy/Sell:
-    <input type="radio" name="Buy" value="true" ng-model="newPin.action" checked>Buy
-    <input type="radio" name="Sell" value="false" ng-model="newPin.action">Sell
+    <div ng-init="newPin.action = true">
+      <input type="radio" name="BuySell" value="true" ng-value="true" ng-model="newPin.action">Buy
+      <input type="radio" name="BuySell" value="false" ng-model="newPin.action">Sell
+    </div>
   </label>
   <br>
   <label>
     Description:
     <textarea ng-model="newPin.desc"></textarea>
   </label>
+  <br>
+  <button ng-click="addPin()">Add Pin</button>
+  <br>
+  {{ newPin.title }}<br>
+  {{ newPin.action }}<br>
+  {{ newPin.desc }}<br
   <br>
 
 </form>

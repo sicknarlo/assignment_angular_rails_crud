@@ -42,7 +42,7 @@ describe PinsController do
 
     it 'should increment the count of pins by 1' do
       expect{
-        post :index, format: :json, pin: attributes_for(pin)
+        post :create, format: :json, pin: pin.attributes
       }.to change(Pin, :count).by(1)
     end
 

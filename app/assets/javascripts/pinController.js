@@ -1,4 +1,4 @@
-app.controller("PinCtrl", ["$scope", "pins", "Restangular", function($scope, pins, Restangular){
+app.controller("PinCtrl", ["$scope", "pins", "Restangular", "$location", function($scope, pins, Restangular, $location){
   $scope.pins = pins;
   $scope.newPin = { action: "true" }
 
@@ -12,12 +12,33 @@ app.controller("PinCtrl", ["$scope", "pins", "Restangular", function($scope, pin
                                   $scope.pins.push(newPin);
                                   $scope.newPin = {};
                                 });
+
+  }
+
+  $scope.removePin = function(id){
+    Restangular.one('pins', id).get().then(function(currentPin){
+                                        currentPin.remove();
+                                        if ($scope.pins){
+                                          $scope.pins = $scope.pins.filter(function(el){
+                                          return el.id != id
+                                          })
+                                        } else {
+                                          $location.path('/pins/index');
+                                        }
+                                      })
   }
 
 }])
 
-app.controller("PinShowCtrl", ["$scope", "pin", function($scope, pin){
+app.controller("PinShowCtrl", ["$scope", "pin", "Restangular", "$location", function($scope, pin, Restangular, $location){
   $scope.pin = pin;
+  $scope.removePin = function(){
+    Restangular.one('pins', pin.id).get().then(function(currentPin){
+                                            currentPin.remove();
+                                            $location.path('/pins/index');
+                                          })
+  }
+
 }])
 
 app.controller("PinEditCtrl", ["$scope", "pin", "Restangular", function($scope, pin, Restangular){

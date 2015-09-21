@@ -33,6 +33,7 @@
 
 <div ng-repeat="pin in pins | orderBy: '-created_at'">
   <a ui-sref="pins.show({id: pin.id})">{{ pin.item_name }}</a><br>
+  <button ng-click="removePin(pin.id)">Remove Pin</button>
   {{ pin.buy_sell ? "Want to Buy":"For Sale"}}<br>
   {{ pin.description }}<br>
   <a ui-sref="pins.edit({id: pin.id})">Edit Pin </a><br>

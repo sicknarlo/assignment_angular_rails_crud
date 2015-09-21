@@ -5,6 +5,7 @@
   {{ pin.item_name }}<br>
   {{ pin.buy_sell ? "Want to Buy":"For Sale"}}<br>
   {{ pin.description }}<br>
-  <h6> Posted: {{ pin.created_at | date }} by {{ pin.user.username }} </h6>
+  <h6> Posted: {{ pin.created_at | date }} by {{ pin.user.username }} </h6><br>
+  <button ng-click="removePin()">Remove Pin</button>
   <hr>
 </div>

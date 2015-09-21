@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe PinsController do
-
-  let!(:pin){ FactoryGirl.create(:pin) }
+  let!(:user){ FactoryGirl.create(:user) }
+  let!(:pin){ FactoryGirl.create(:pin, :user => user) }
   let(:json){ JSON.parse(response.body) }
 
   describe 'GET /pins' do
@@ -47,6 +47,7 @@ describe PinsController do
     end
 
     it 'should increment the count of pins by 1 if logged in' do
+      sign_in(user)
       expect{
         post :create, format: :json, pin: pin.attributes
       }.to change(Pin, :count).by(1)
@@ -74,7 +75,14 @@ describe PinsController do
   describe 'Delete /pins/id' do
 
     it 'should delete pins properly' do
+      sign_in(user)
       expect{ delete :destroy, format: :json, id: pin.id }.to change(Pin, :count).by(-1)
+    end
+
+    it 'should not be able to delete other users pins' do
+      sign_in(user)
+      pin2 = FactoryGirl.create(:pin)
+      expect{ delete :destroy, format: :json, id: pin2.id }.to change(Pin, :count).by(0)
     end
   end
 end

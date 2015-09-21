@@ -1,5 +1,6 @@
 class PinsController < ApplicationController
-  before_action :require_user, only: [:create, :destroy, :update]
+  before_action :authenticate_user!, only: [:create, :destroy, :update]
+  before_action :require_owner, only: [:destroy, :update]
 
   def index
     @pins = Pin.all
@@ -52,11 +53,19 @@ class PinsController < ApplicationController
     params.require(:pin).permit(:item_name, :buy_sell, :description, :user_id)
   end
 
-  def require_user
-    unless current_user
+  def require_owner
+    unless current_user.id == params[:id]
       respond_to do |format|
-        # ???
+        format.json { render json: {message: "Error", status: 400}}
       end
     end
   end
+
+  # def require_user
+  #   unless current_user
+  #     respond_to do |format|
+  #       # ???
+  #     end
+  #   end
+  # end
 end

@@ -5,8 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
+srand(12345)
 5.times do |i|
-  User.create(username: Faker::Name.name)
-  User.pins.create(item_name: Faker::Commerce.product_name, buy_sell: true)
+  new_user = User.create(username: Faker::Name.name)
+  (rand(5) + 1).times do |i|
+    new_user.pins.create(item_name: Faker::Commerce.product_name, buy_sell: rand(2) > 0 ? true : false)
+  end
 end

@@ -38,8 +38,9 @@ app.controller("PinCtrl", ["$scope", "pins", "Restangular", "$location", 'UserSe
 
 }])
 
-app.controller("PinShowCtrl", ["$scope", "pin", "Restangular", "$location", function($scope, pin, Restangular, $location){
+app.controller("PinShowCtrl", ["$scope", "pin", "Restangular", "$location", "UserService", function($scope, pin, Restangular, $location, UserService){
   $scope.pin = pin;
+  $scope.currentUser = UserService.currentUser
   $scope.removePin = function(){
     Restangular.one('pins', pin.id).get().then(function(currentPin){
                                             currentPin.remove();
@@ -49,8 +50,11 @@ app.controller("PinShowCtrl", ["$scope", "pin", "Restangular", "$location", func
 
 }])
 
-app.controller("PinEditCtrl", ["$scope", "pin", "Restangular", "$location", function($scope, pin, Restangular, $location){
+app.controller("PinEditCtrl", ["$scope", "pin", "Restangular", "$location", "UserService", function($scope, pin, Restangular, $location, UserService){
   $scope.editPin = pin;
+  if (pin.user_id != UserService.currentUser.user.id) {
+    $location.path('/pins/index')
+  }
   $scope.updatePin = function(){
   Restangular.one('pins', pin.id).get().then(function(currentPin){
                                   console.log(currentPin);

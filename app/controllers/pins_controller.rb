@@ -20,7 +20,6 @@ class PinsController < ApplicationController
 
   def create
     @pin = Pin.new(whitelist_pin_params)
-      binding.pry
     if @pin.save
       respond_to do |format|
         format.json { render json: @pin.to_json( include: :user )}
@@ -54,7 +53,8 @@ class PinsController < ApplicationController
   end
 
   def require_owner
-    unless current_user.id == params[:id].to_i
+    # binding.pry
+    unless current_user.id == Pin.find(params[:id]).user_id
       respond_to do |format|
         format.json { render json: {message: "Error", status: 400}}
       end

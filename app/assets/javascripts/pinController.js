@@ -1,13 +1,15 @@
 app.controller("PinCtrl", ["$scope", "pins", "Restangular", "$location", 'UserService', function($scope, pins, Restangular, $location, UserService){
   $scope.pins = pins;
-  $scope.newPin = { title: "",
+
+  $scope.newPin = { title: "start",
                     action: "true",
                     desc: "" }
+
   $scope.loggedIn = UserService.loggedIn;
 
   $scope.currentUser = UserService.currentUser;
 
-  $scope.addPin = function(){
+  $scope.addPin = function(pin){
     console.log($scope.newPin)
     Restangular.all('pins').post({ pin : {item_name: $scope.newPin.title,
                                           buy_sell: $scope.newPin.action,
